@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js",
+    "start": "nodemon ./src/serve.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +20,10 @@
   "homepage": "https://github.com/LuizGabriel2000/ControleFinanceiro.Api#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mssql": "^8.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
