@@ -46,6 +46,44 @@ module.exports = {
         res.json(json);
     },
 
+    Editar: async(req, res) => {
+        let json = {error:'', result:{}};
+
+        console.log("REQ aqui:", req.body)
+        let id = req.params.id;
+        let nome = req.body.nome;
+        let valor = req.body.valor;
+        let data = req.body.data;
+    
+        if (nome.length > 20) {
+            json.error = "Campo contem mais de 20 caracteres"
+        } else {
+            if(id && nome && valor && data) {
+                await ReceitaService.Editar(id, nome, valor, data);
+                json.result = {
+                    id,
+                    nome,
+                    valor,
+                    data,
+                };
+                    
+            } else {
+                    json.error = 'campos não Editados';
+            }
+        }
+        
+        res.json(json);
+    },
+
+    Delete: async(req, res) => {
+        let json = {error:'', result:{}};
+
+        await ReceitaService.Delete(req.params.id);
+
+        res.json(json);
+
+    },
+
 
     
 

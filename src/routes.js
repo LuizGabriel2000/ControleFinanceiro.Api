@@ -7,5 +7,6 @@ const ReceitaController = require('./controllers/ReceitaController')
 
 router.get('/chamar', ReceitaController.Chamar);
 router.post('/enviar', ReceitaController.Enviar);
-
+router.put('/editar/:id' ,ReceitaController.Editar);
+router.delete('/deletar/:id', ReceitaController.Delete);
 module.exports = router;

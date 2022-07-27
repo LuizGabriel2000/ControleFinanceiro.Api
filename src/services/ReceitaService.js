@@ -27,5 +27,26 @@ module.exports = {
         })
     },
 
+    Editar: (id, nome, valor, data) => {
+        return new Promise((aceito, rejeitado) => {
+            db.query(`update Receita set id = ${id}, nome = '${nome}', valor = ${valor}, data = '${data}'`, (error, results) => {
+                 console.log('alterado pelo id filho da p', error, results)
+                if(error) { rejeitado(error); return; }
+
+                aceito(results);
+            })
+        })
+    },
+
+    Delete: (id) =>{
+        return new Promise((aceito, rejeitado)=> {
+            db.query(`DELETE FROM Receita WHERE id = ${id}`, (error, results)=>{
+                console.log("------- deletado filho -------", error, results)
+                if(error) {rejeitado(error); return; }
+                aceito(results.recordset);
+            })
+        })
+    },
+
 
 };
