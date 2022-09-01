@@ -1,18 +1,18 @@
-const ReceitaService = require('../services/ReceitaService')
+const DespesaService = require('../services/Despesa.Service')
 
 module.exports = {
     Chamar: async (req, res) =>{
         let json = {error:'', result:[]}
 
-        let receita = await ReceitaService.Chamar()
+        let Despesa = await DespesaService.Chamar()
 
-        for(let i in receita) {
+        for(let i in Despesa) {
             console.log("O que é  i =>", i)
             json.result.push({
-                id: receita[i].id,
-                nome: receita[i].nome,
-                valor: receita[i].valor,
-                data: receita[i].data,
+                id: Despesa[i].id,
+                nome: Despesa[i].nome,
+                valor: Despesa[i].valor,
+                data: Despesa[i].data,
             });
                 
         }
@@ -20,11 +20,12 @@ module.exports = {
         res.json(json); 
     },
 
+
     Id: async(req, res) => {
         let json = {error:'', result:{}};
 
         let id = req.params.id;
-        let nome = await ReceitaService.Id(id);
+        let nome = await DespesaService.Id(id);
         
         if(nome) {
             json.result = nome;
@@ -44,9 +45,9 @@ module.exports = {
         let data = req.body.data;
         
         if(nome && valor) {
-            let ReceitaCodigo = await ReceitaService.Enviar(id, nome, valor, data);
+            let DespesaCodigo = await DespesaService.Enviar(id, nome, valor, data);
             json.result = {
-                id: ReceitaCodigo,
+                id: DespesaCodigo,
                 nome,
                 valor,
                 data,
@@ -59,7 +60,7 @@ module.exports = {
         res.json(json);
     },
 
-    Editar: async(req, res) => { 
+    Editar: async(req, res) => {
         let json = {error:'', result:{}};
 
         console.log("REQ aqui:", req.body)
@@ -72,7 +73,7 @@ module.exports = {
             json.error = "Campo contem mais de 20 caracteres"
         } else {
             if(id && nome && valor && data) {
-                await ReceitaService.Editar(id, nome, valor, data);
+                await DespesaService.Editar(id, nome, valor, data);
                 json.result = {
                     id,
                     nome,
@@ -91,7 +92,7 @@ module.exports = {
     Delete: async(req, res) => {
         let json = {error:'', result:{}};
 
-        await ReceitaService.Delete(req.params.id);
+        await DespesaService.Delete(req.params.id);
 
         res.json(json);
 

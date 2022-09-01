@@ -6,8 +6,8 @@ const connStr = "Server=localhost,1433;Database=LG_ControleFinanceiro;User Id=sa
 const sql = require("mssql");
 
 sql.connect(connStr)
-   .then(conn => console.log("conectou! Porra"))
-   .catch(err => console.log("erro! Se " + err));
+   .then(conn => console.log("conectou!"))
+   .catch(err => console.log("erro!" + err));
 
 
 module.exports = sql;

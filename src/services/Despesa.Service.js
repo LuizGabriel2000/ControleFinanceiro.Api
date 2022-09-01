@@ -6,7 +6,7 @@ const db = require('../db')
 module.exports = {
     Chamar: () =>{
         return new Promise((aceito, rejeitado)=>{
-            db.query('SELECT * FROM Receita', (error, results)=>{
+            db.query('SELECT * FROM Despesa', (error, results)=>{
                 console.log("------- teste -------", error, results)
                 if(error) {rejeitado(error); return; }
                 aceito(results.recordset);
@@ -15,10 +15,10 @@ module.exports = {
     },
 
     Id: (id) => {
-        return new Promise((aceito, rejeitado) => {
+        return new Promise((aceito, rejeitado) => { 
 
             
-            db.query(`SELECT * FROM Receita WHERE id = ${id}`, (error, results) => {
+            db.query(`SELECT * FROM Despesa WHERE id = ${id}`, (error, results) => {
                 if(error) { rejeitado(error); return; }
                 if(results.recordset.length > 0){
                     aceito(results.recordset[0]);
@@ -33,7 +33,7 @@ module.exports = {
         return new Promise((aceito, rejeitado) => {
             let id = (Math.random() * 1000)
             console.log('aqui', id, nome, valor, data )
-            db.query(`INSERT INTO Receita (id, nome, valor, data) VALUES (${id}, '${nome}', ${valor}, '${data}')`, (error, results) => {
+            db.query(`INSERT INTO Despesa (id, nome, valor, data) VALUES (${id}, '${nome}', ${valor}, '${data}')`, (error, results) => {
                 
                 if(error) { rejeitado(error); return; }
 
@@ -44,8 +44,8 @@ module.exports = {
 
     Editar: (id, nome, valor, data) => {
         return new Promise((aceito, rejeitado) => {
-            db.query(`update Receita set nome = '${nome}', valor = ${valor}, data = '${data}' where id = ${id}`, (error, results) => {
-                 console.log('alterado pelo id', error, results)
+            db.query(`update Despesa set nome = '${nome}', valor = ${valor}, data = '${data}' where id = ${id}`, (error, results) => {
+                 console.log('alterado pelo id ', error, results)
                 if(error) { rejeitado(error); return; }
 
                 aceito(results);
@@ -55,7 +55,7 @@ module.exports = {
 
     Delete: (id) =>{
         return new Promise((aceito, rejeitado)=> {
-            db.query(`DELETE FROM Receita WHERE id = ${id}`, (error, results)=>{
+            db.query(`DELETE FROM Despesa WHERE id = ${id}`, (error, results)=>{
                 console.log("------- deletado-------", error, results)
                 if(error) {rejeitado(error); return; }
                 aceito(results.recordset);

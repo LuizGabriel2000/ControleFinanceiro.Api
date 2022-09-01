@@ -14,7 +14,7 @@ server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(express.json())
 
-// Aqui ele esta fazendo com que todos os endereços das rotas tenham /luizao
+// Aqui ele esta fazendo com que todos os endereços das rotas /api
 server.use('/api', routes);
 
 server.listen(process.env.PORT, ()=>{
